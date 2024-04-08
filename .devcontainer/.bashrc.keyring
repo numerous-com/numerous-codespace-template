@@ -1,11 +1,22 @@
 DBUS_ENV_FILE=~/dbus-env.sh
 KEYRING_ENV_FILE=~/keyring-env.sh
 
+# remove dbus configuration, if it stopped and needs restart
+if [[ ! $(ps aux | grep '/usr/bin/dbus-daemon' | grep -v grep) ]]; then 
+    rm $DBUS_ENV_FILE
+fi
+
 # start dbus daemon, or just configure existing session for it
 if [[ ! -f $DBUS_ENV_FILE ]]; then
     dbus-launch --sh-syntax > $DBUS_ENV_FILE
 fi
 eval $(cat $DBUS_ENV_FILE)
+
+# remove gnome keyring, if it stopped and needs restart
+if [[ ! $(ps aux | grep '/usr/bin/gnome-keyring-daemon' | grep -v grep) ]]; then 
+    rm -r ~/.local/share/keyrings
+    rm $KEYRING_ENV_FILE
+fi
 
 # unlock gnome keyring, or just configure existing session for it
 if [[ ! -f $KEYRING_ENV_FILE ]]; then
