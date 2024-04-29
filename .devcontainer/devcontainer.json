@@ -1,6 +1,9 @@
 {
     "name": "Python 3",
-    "image": "public.ecr.aws/z8x9a5q0/numerous-devcontainer:latest",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
     "customizations": {
         "vscode": {
             "settings": {},
@@ -16,5 +19,6 @@
             "label": "numerous dev command",
             "onAutoForward": "notify"
         }
-    }
+    },
+    "postCreateCommand": "pip install numerous marimo streamlit dash"
 }
