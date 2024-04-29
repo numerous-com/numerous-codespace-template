@@ -1,9 +1,6 @@
 {
     "name": "Python 3",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": "."
-    },
+    "image": "public.ecr.aws/z8x9a5q0/numerous-devcontainer:latest",
     "customizations": {
         "vscode": {
             "settings": {},
