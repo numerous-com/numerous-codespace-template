@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/python:3.11
 
-RUN apt update && apt install -y dbus-x11 gnome-keyring
+RUN apt update && apt install -y dbus-x11 gnome-keyring xdg-utils
 
 # enable keyring
 COPY .bashrc.keyring /home/vscode/.bashrc.keyring
